@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"rest-api-in-gin/internal/database"
 	"strconv"
@@ -19,6 +20,7 @@ func (app *application) createEvent(c *gin.Context) {
 	err := app.models.Events.Insert(&event)
 
 	if err != nil {
+		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create event"})
 		return
 	}
